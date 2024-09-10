@@ -254,7 +254,7 @@ void WifiManager::connectWiFiOrStartHotspot() {
             Serial.println("**********************************");
             Serial.println("*       Connected to WiFi        *");
             Serial.println("*       IP Address:              *");
-            Serial.println("--");Serial.print(WiFi.localIP());Serial.print("--");
+            Serial.print(WiFi.localIP());Serial.print("--");
             Serial.println("**********************************");
         }
     } else {
@@ -265,8 +265,9 @@ void WifiManager::connectWiFiOrStartHotspot() {
 }
 
 void WifiManager::startHotspot() {
-    Serial.println("*       Starting Hotspot        *");
     Serial.println("*********************************");
+    Serial.println("*       Starting Hotspot        *");
+
 
     // Optionally, configure the Access Point's IP settings
     IPAddress local_IP(192, 168, 4, 1);   // Set the local IP of the ESP32 (default is 192.168.4.1)
@@ -306,13 +307,9 @@ void WifiManager::startHotspot() {
     }
 
     // Print the IP address of the Access Point
-            Serial.print("Access Point IP address: ");
-            Serial.println("\n");
-            Serial.println("**********************************");
-            Serial.println("*       Connected to WiFi        *");
-            Serial.println("*Access Point IP Address:");
-            Serial.println(WiFi.softAPIP());Serial.println("   *");
-            Serial.println("**********************************");
+            Serial.println("*    Access Point IP Address:   *");
+            Serial.println(WiFi.softAPIP());Serial.print("*");
+            Serial.println("*********************************");
             delay(10);// Delay for stability
             setupServer();// Setup the server to handle requests
    
