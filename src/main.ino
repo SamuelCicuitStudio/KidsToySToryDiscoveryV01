@@ -51,6 +51,6 @@ void setup() {
 void loop() {
 delay(10);
   
-  buttonManager.handleButtonPressPulledUp();
+ // buttonManager.handleButtonPressPulledUp();
 
 }
