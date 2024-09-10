@@ -14,7 +14,6 @@ public:
     uint8_t handleButtonPressPulledUp();
     uint8_t handleButtonPressPulledDown();
     void resetDevice();
-
 private:
     EEPROMManager* EepromManager;  // Pointer to EEPROMManager instance
     WifiManager* wifiManager;

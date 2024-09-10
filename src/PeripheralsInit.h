@@ -20,6 +20,8 @@
 
 #define _BtInit {pinMode(BUTTON1_PIN, INPUT);pinMode(BUTTON2_PIN, INPUT);}
 #define _LedInit {pinMode(LED1_PIN, OUTPUT);pinMode(LED2_PIN, OUTPUT);}
+#define _SdCardInit { SPIClass spi = SPIClass(HSPI); spi.begin(SD_CLK_PIN, SD_MISO_PIN, SD_MOSI_PIN, SD_CS_PIN); if (!SD.begin(SD_CS_PIN, spi)) { Serial.println("SD Card initialization failed!"); } else { Serial.println("SD Card initialized successfully."); }}
+
 class PeripheralsInit {
 public:
     // Constructor

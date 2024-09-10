@@ -26,7 +26,7 @@
 
 // Default Hotspot Credentials
 // These credentials are used if no custom hotspot credentials are set.
-#define DEFAULT_HOTSPOT_NAME "TestSebWifiHotspot"
+#define DEFAULT_HOTSPOT_NAME "KidsToyStory"
 #define DEFAULT_HOTSPOT_PASS "1234567890"
 
 // Default Wi-Fi Credentials

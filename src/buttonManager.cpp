@@ -15,6 +15,7 @@ uint8_t ButtonManager::handleButtonPressPulledUp() {
                         Serial.println("Resetting the Device!");
                         EepromManager->storeBool(ADDR_CONFIG_FLAG, true); // Set true a flag to reset
                         resetDevice(); // Function to reset the device
+                        wifiManager->restart(5);//restarting in 5 seconds
                         return 0;
                     }
                 }
@@ -91,8 +92,7 @@ uint8_t ButtonManager::handleButtonPressPulledUp() {
     delay(DEBOUNCE);
     Serial.println("Button pressed. Starting AP mode.");
     EepromManager->storeBool(ADDR_CONFIG_FLAG, true); // Restart the device in AP mode
-    delay(2000);
-    esp_restart(); // Restart the device
+    wifiManager->restart(5);//restarting in 5 seconds
 
     return 1;
 }
@@ -111,6 +111,7 @@ uint8_t ButtonManager::handleButtonPressPulledDown() {
                         Serial.println("Resetting the Device!");
                         EepromManager->storeBool(ADDR_CONFIG_FLAG, true); // Set true a flag to reset
                         resetDevice(); // Function to reset the device
+                        wifiManager->restart(5);//restarting in 5 seconds
                         return 0;
                     }
                 }
@@ -187,9 +188,7 @@ uint8_t ButtonManager::handleButtonPressPulledDown() {
     delay(DEBOUNCE);
     Serial.println("Button pressed. Starting AP mode.");
     EepromManager->storeBool(ADDR_CONFIG_FLAG, true); // Restart the device in AP mode
-    delay(2000);
-    esp_restart(); // Restart the device
-
+    wifiManager->restart(5);//restarting in 5 seconds
     return 1;
 }
 
@@ -212,3 +211,4 @@ void ButtonManager::resetDevice() {
         EepromManager->eraseEEPROM();
     // Insert logic for resetting the device, such as clearing config, etc.
 }
+

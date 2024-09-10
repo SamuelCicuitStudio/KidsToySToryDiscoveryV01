@@ -36,7 +36,7 @@ void MicrophoneManager::configureMic() {
         Serial.printf("Failed to configure ADC channel attenuation: %s\n", esp_err_to_name(err));
         return;
     }
-     Serial.println("****Microphone initialized.****\n");
+     Serial.println("     Microphone initialized.     ");
      Serial.println("*********************************");
 
 }

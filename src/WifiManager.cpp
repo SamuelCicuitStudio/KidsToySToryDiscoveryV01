@@ -7,7 +7,7 @@ void WifiManager::begin() {
 
     Serial.println("*********************************");
     Serial.println("*   Start Wifi Manager Config   *");
-    Serial.println("*********************************");
+
     if (!SPIFFS.begin(true)) {
     Serial.println("Failed to mount file system. Initializing file system.");
     if (!SPIFFS.format()) {
@@ -106,14 +106,7 @@ void WifiManager::handleSaveConfig(AsyncWebServerRequest *request) {
     EePROMManager->storeBool(ADDR_CONFIG_FLAG, true);//set true to go wifi first
     Serial.println("\nResetting Config flag...");
     EePROMManager->storeBool(ADDR_CONFIG_FLAG, true);//to set the flag for first time
-    Serial.println("Restart in 5 sec...");
-    int attempts = 0;
-        while (attempts < 5) {
-            delay(1000);
-            Serial.print("*");
-            attempts++;
-        };
-    esp_restart();//restart esp32
+    restart(5);//restarting in 5 seconds
 }
 
 void WifiManager::saveCredentials(const String& ssid, const String& password) {
@@ -232,10 +225,8 @@ void WifiManager::connectWiFiOrStartHotspot() {
     String ssid = loadConfigValue("wifiSSID");
     String password = loadConfigValue("wifiPassword");
     String mode = loadConfigValue("hotspotMode");
-    Serial.println("\n");
-    Serial.println("**********************************");
-    Serial.println("*       Connecting to WiFi       *");
-    Serial.println("**********************************");
+    Serial.println("*       Connecting to WiFi      *");
+    Serial.println("*********************************");
     Serial.println("wifiSSID :");Serial.print(ssid);Serial.println();
     Serial.println("wifiPassword :");Serial.print(password);Serial.println();
     
@@ -256,46 +247,26 @@ void WifiManager::connectWiFiOrStartHotspot() {
         if (WiFi.status() != WL_CONNECTED) {
             Serial.println("\nSetting Config flag...");
             EePROMManager->storeBool(ADDR_CONFIG_FLAG, false);//to set the flag for first time
-            Serial.println("Restarting in 5 sec...");
-             int start = 0;
-            while (start < 5) {
-                delay(1000);
-               Serial.print("*");
-               start++;
-             };
-        esp_restart();//restart esp32
+            restart(5);//restarting in 5 seconds
             
         } else {
             Serial.println("\n");
             Serial.println("**********************************");
             Serial.println("*       Connected to WiFi        *");
-            Serial.println("*       IP Address:");
-            Serial.print(WiFi.localIP());Serial.println("   *");
+            Serial.println("*       IP Address:              *");
+            Serial.println("--");Serial.print(WiFi.localIP());Serial.print("--");
             Serial.println("**********************************");
-            
-
         }
     } else {
          Serial.println("\nSetting Config flag...");
             EePROMManager->storeBool(ADDR_CONFIG_FLAG, false);//to set the flag for first time
-            Serial.println("Restart in 5 sec...");
-             int starts = 0;
-            while (starts < 5) {
-                delay(1000);
-               Serial.print("*");
-               starts++;
-             };
-        esp_restart();//restart esp32
-           
-        //
+            restart(7);//restarting in 7 seconds
     }
 }
 
 void WifiManager::startHotspot() {
-    Serial.println("\n");
-    Serial.println("**********************************");
-    Serial.println("*       Starting Hotspot         *");
-    Serial.println("**********************************");
+    Serial.println("*       Starting Hotspot        *");
+    Serial.println("*********************************");
 
     // Optionally, configure the Access Point's IP settings
     IPAddress local_IP(192, 168, 4, 1);   // Set the local IP of the ESP32 (default is 192.168.4.1)
@@ -330,32 +301,36 @@ void WifiManager::startHotspot() {
         writeConfig(defaultConfig);
         Serial.println("\nSetting Config flag...");
             EePROMManager->storeBool(ADDR_CONFIG_FLAG, false);//to set the flag for first time
-            Serial.println("Restart in 5 sec...");
-             int starts = 0;
-            while (starts < 5) {
-                delay(1000);
-               Serial.print("*");
-               starts++;
-             };
-        esp_restart();//restart esp32
+            restart(7);//restarting in 7 seconds
         
     }
 
     // Print the IP address of the Access Point
-              Serial.print("Access Point IP address: ");
+            Serial.print("Access Point IP address: ");
             Serial.println("\n");
             Serial.println("**********************************");
             Serial.println("*       Connected to WiFi        *");
             Serial.println("*Access Point IP Address:");
-             Serial.println(WiFi.softAPIP());Serial.println("   *");
+            Serial.println(WiFi.softAPIP());Serial.println("   *");
             Serial.println("**********************************");
-
-
-    // Delay for stability
-    delay(10);
-
-    // Setup the server to handle requests
-    setupServer();
+            delay(10);// Delay for stability
+            setupServer();// Setup the server to handle requests
    
 }
 
+void WifiManager::restart(uint8_t sec){
+    Serial.println("*********************************");
+    Serial.println("*    Restartinng the Device     *");
+    Serial.println("*********************************");
+    Serial.println("Restarting in ");
+    Serial.print(sec);
+    Serial.print(" Sec ");
+    Serial.println();
+    int attempts = 0;
+    while (attempts < sec) {
+        delay(1000);
+        Serial.print("*");
+        attempts++;
+     };
+    esp_restart();//restart esp32
+}

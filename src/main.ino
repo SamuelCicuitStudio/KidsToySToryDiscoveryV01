@@ -23,22 +23,25 @@ void setup() {
   Serial.println("*********************************");
   _EepromInit;
   Serial.println("*********************************");
+  Serial.println("*       Initializing SD card    *");
+  Serial.println("*********************************");
+  _SdCardInit;
+  Serial.println("*********************************");
   Serial.println("*      Initializing Button      *");
   Serial.println("*********************************");
   _BtInit;
+  peripherals.initButtons();
   Serial.println("*********************************");
   Serial.println("*      Initializing LEDS        *");
   Serial.println("*********************************");
   _LedInit;
+  peripherals.initLEDs();
   Serial.println("*********************************");
   Serial.println("*       Initializing Mic        *");
   Serial.println("*********************************");
   _MicInit;
- 
-  peripherals.initLEDs();
-  peripherals.initButtons();
   Mic.init();
- //peripherals.initSDCard(); 
+ 
   wifiManager.begin();// Initialize WiFiManager
   Serial.println("*********************************");
   Serial.println("*  Setup done, entering loop..  *");
@@ -46,7 +49,7 @@ void setup() {
 }
 
 void loop() {
-
+delay(10);
   while(EePROMManager.readBool(ADDR_CONFIG_FLAG)){
   buttonManager.handleButtonPressPulledUp();
   }

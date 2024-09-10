@@ -54,19 +54,7 @@ void PeripheralsInit::startI2SPlayback(const char* wavFilePath) {
  * is inserted and ready for use.
  */
 void PeripheralsInit::initSDCard() {
-    Serial.println("***********Starting SD card Initialization***********");
-    // SD card pin configuration for SPI communication
-    SPIClass spi = SPIClass(HSPI);  // Use VSPI bus (or HSPI if desired)
-
-    // Define custom pin mappings for SD card communication
-    spi.begin(SD_CLK_PIN, SD_MISO_PIN, SD_MOSI_PIN, SD_CS_PIN);
-
-    // Initialize the SD card using the custom SPI configuration and chip select pin
-    if (!SD.begin(SD_CS_PIN, spi)) {
-        Serial.println("***********SD Card initialization failed!***********");
-    } else {
-        Serial.println("***********SD Card initialized successfully.***********");
-    }
+Serial.println("Use _SdCardInit instead.");
 }
 
 /**
@@ -86,7 +74,7 @@ void PeripheralsInit::initLEDs() {
     // Turn off both LEDs initially
     digitalWrite(LED1_PIN, LOW);
     digitalWrite(LED2_PIN, LOW);
-    Serial.println("**********LEDs initialized.*****\n");
+    Serial.println("        LEDs initialized.         ");
      Serial.println("*********************************");
 }
 
@@ -96,6 +84,6 @@ void PeripheralsInit::initLEDs() {
  */
 void PeripheralsInit::initButtons() {
     // Configure buttons with internal pull-up resistors
-     Serial.println("******Buttons initialized.*******");
+     Serial.println("      Buttons initialized.       ");
      Serial.println("*********************************");
 }

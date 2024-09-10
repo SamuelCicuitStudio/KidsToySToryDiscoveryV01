@@ -10,6 +10,7 @@
 #include "DeviceConfig.h"
 #include "EEPROMManager.h"
 #include "PeripheralsInit.h"
+
 class WifiManager {
 public:
     WifiManager();
@@ -17,6 +18,7 @@ public:
     void saveCredentials(const String& ssid, const String& password);
     void saveConfig(const String& mode, const String& hotspotSSID, const String& hotspotPassword);
     void writeConfig(const String& json);
+    void restart(uint8_t sec);
     EEPROMManager* EePROMManager;
     PeripheralsInit peripherals;
 
