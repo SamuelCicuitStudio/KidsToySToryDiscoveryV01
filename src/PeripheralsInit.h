@@ -18,6 +18,8 @@
 #include "pin_config.h"
 #include "MicrophoneManager.h"
 
+#define _BtInit {pinMode(BUTTON1_PIN, INPUT);pinMode(BUTTON2_PIN, INPUT);}
+#define _LedInit {pinMode(LED1_PIN, OUTPUT);pinMode(LED2_PIN, OUTPUT);}
 class PeripheralsInit {
 public:
     // Constructor

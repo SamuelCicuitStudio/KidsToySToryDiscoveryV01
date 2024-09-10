@@ -18,7 +18,7 @@ public:
     void saveConfig(const String& mode, const String& hotspotSSID, const String& hotspotPassword);
     void writeConfig(const String& json);
     EEPROMManager* EePROMManager;
-    PeripheralsInit* peripherals;
+    PeripheralsInit peripherals;
 
 private:
     AsyncWebServer server;

@@ -14,7 +14,6 @@ MicrophoneManager::MicrophoneManager() {
  */
 void MicrophoneManager::init() {
     configureMic();
-    Serial.println("Microphone initialized.");
 }
 
 /**
@@ -22,17 +21,10 @@ void MicrophoneManager::init() {
  * By default, sets high gain and disables auto-recovery.
  */
 void MicrophoneManager::configureMic() {
-    // Default configuration: high gain, auto-recovery off
-    pinMode(MIC_OUT_PIN, INPUT);     // Set microphone output pin as input
-    pinMode(MIC_GAIN_PIN, OUTPUT);   // Set gain control pin as output
-    pinMode(MIC_AR_PIN, OUTPUT);     // Set auto-recovery control pin as output
-
     // Configure microphone gain and auto-recovery settings
     digitalWrite(MIC_GAIN_PIN, HIGH); // Set high gain for the microphone
     digitalWrite(MIC_AR_PIN, LOW);    // Disable auto-recovery mode
-    Serial.println("Microphone initialized.");
-    digitalWrite(MIC_GAIN_PIN, HIGH); // Set high gain
-    digitalWrite(MIC_AR_PIN, LOW);    // Disable auto-recovery
+   
     // Configure ADC width (e.g., ADC_WIDTH_BIT_12 for 12-bit resolution)
     esp_err_t err = adc1_config_width(ADC_WIDTH);
     if (err != ESP_OK) {
@@ -44,7 +36,9 @@ void MicrophoneManager::configureMic() {
         Serial.printf("Failed to configure ADC channel attenuation: %s\n", esp_err_to_name(err));
         return;
     }
-    
+     Serial.println("****Microphone initialized.****\n");
+     Serial.println("*********************************");
+
 }
 
 /**

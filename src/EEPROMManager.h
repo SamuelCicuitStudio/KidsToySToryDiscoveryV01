@@ -3,7 +3,8 @@
 
 #include <EEPROM.h>
 #include "DeviceConfig.h"
-
+#include <Arduino.h>
+#define _EepromInit { if (!EEPROM.begin(EEPROM_SIZE)) {Serial.println("Failed to initialize EEPROM");while (1) {delay(10); }} else {Serial.println("EEPROM initialized successfully");}}
 class EEPROMManager {
 public:
     EEPROMManager();  // Constructor to initialize EEPROM

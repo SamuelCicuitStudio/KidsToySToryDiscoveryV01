@@ -40,7 +40,7 @@
 
 // EEPROM Size
 // Defines the size of the EEPROM in bytes.
-#define EEPROM_SIZE 256
+#define EEPROM_SIZE 64
 
 // EEPROM Address for Configuration Flag
 // Address in EEPROM to store the configuration flag.

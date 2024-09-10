@@ -5,7 +5,7 @@
 #include "pin_config.h"
 #include "DeviceConfig.h"
 
-
+#define _MicInit {pinMode(MIC_OUT_PIN, INPUT);pinMode(MIC_GAIN_PIN, OUTPUT);pinMode(MIC_AR_PIN, OUTPUT);}
 class MicrophoneManager {
 public:
 

@@ -4,9 +4,10 @@
 WifiManager::WifiManager() : server(80) {}
 
 void WifiManager::begin() {
-    Serial.println("\n*******************Start Wifi Manager Config*******************");
-    EePROMManager->initEEPROM();
 
+    Serial.println("*********************************");
+    Serial.println("*   Start Wifi Manager Config   *");
+    Serial.println("*********************************");
     if (!SPIFFS.begin(true)) {
     Serial.println("Failed to mount file system. Initializing file system.");
     if (!SPIFFS.format()) {
@@ -271,11 +272,7 @@ void WifiManager::connectWiFiOrStartHotspot() {
             Serial.println("*       IP Address:");
             Serial.print(WiFi.localIP());Serial.println("   *");
             Serial.println("**********************************");
-            peripherals->initButtons();//init button
-            peripherals->initLEDs();//init leds
-            peripherals->initSDCard();//init SD Card
-            peripherals->initMicrophone();//init microphone
-            //peripherals.initI2S();//init i2s
+            
 
         }
     } else {

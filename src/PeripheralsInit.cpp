@@ -11,10 +11,10 @@
  *        This constructor initializes member variables and prepares the ESP32 peripherals.
  */
 PeripheralsInit::PeripheralsInit(){  
-    // Initialize all peripherals
+    // Initialize other peripherals
     //initButtons();
     //initLEDs();
-   // initMicrophone();
+    //initMicrophone();
     //initSDCard();
     //initI2S();
 }
@@ -54,6 +54,7 @@ void PeripheralsInit::startI2SPlayback(const char* wavFilePath) {
  * is inserted and ready for use.
  */
 void PeripheralsInit::initSDCard() {
+    Serial.println("***********Starting SD card Initialization***********");
     // SD card pin configuration for SPI communication
     SPIClass spi = SPIClass(HSPI);  // Use VSPI bus (or HSPI if desired)
 
@@ -62,9 +63,9 @@ void PeripheralsInit::initSDCard() {
 
     // Initialize the SD card using the custom SPI configuration and chip select pin
     if (!SD.begin(SD_CS_PIN, spi)) {
-        Serial.println("SD Card initialization failed!");
+        Serial.println("***********SD Card initialization failed!***********");
     } else {
-        Serial.println("SD Card initialized successfully.");
+        Serial.println("***********SD Card initialized successfully.***********");
     }
 }
 
@@ -82,14 +83,11 @@ microphoneManager->configureMic();
  * This function configures the LED pins and turns them off by default.
  */
 void PeripheralsInit::initLEDs() {
-    pinMode(LED1_PIN, OUTPUT);  // Set LED1 pin as output
-    pinMode(LED2_PIN, OUTPUT);  // Set LED2 pin as output
-
     // Turn off both LEDs initially
     digitalWrite(LED1_PIN, LOW);
     digitalWrite(LED2_PIN, LOW);
-
-    Serial.println("LEDs initialized.");
+    Serial.println("**********LEDs initialized.*****\n");
+     Serial.println("*********************************");
 }
 
 /**
@@ -98,8 +96,6 @@ void PeripheralsInit::initLEDs() {
  */
 void PeripheralsInit::initButtons() {
     // Configure buttons with internal pull-up resistors
-    pinMode(BUTTON1_PIN, INPUT);  // Set BUTTON1 pin as input with pull-up
-    pinMode(BUTTON2_PIN, INPUT);  // Set BUTTON2 pin as input with pull-up
-
-    Serial.println("Buttons initialized.");
+     Serial.println("******Buttons initialized.*******");
+     Serial.println("*********************************");
 }

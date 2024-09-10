@@ -87,16 +87,8 @@ uint32_t EEPROMManager::readUInt32(int address) {
 
 // Function to initialize EEPROM
 void EEPROMManager::initEEPROM() {
-    start:;
-        if (EEPROM.begin(EEPROM_SIZE)) {
-            
-            Serial.println("EEPROM initialized successfully.");
-        } else {
-            Serial.println("EEPROM initialization failed. Retrying...");
-            delay(1000);  // Wait 1 second before retrying
-            goto start;
-        };
-    
+    // Initialize EEPROM
+Serial.println("Use _EepromInit to initialize EEPROM");
 }
 
 // Function to erase EEPROM
