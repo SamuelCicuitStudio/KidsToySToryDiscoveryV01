@@ -16,7 +16,7 @@ PeripheralsInit peripherals;
 MicrophoneManager Mic;
 EEPROMManager EePROMManager; 
 void setup() {
-  Serial.begin(9600);// Initialize serial communication
+  Serial.begin(115200);// Initialize serial communication
   Serial.println("\n\n");
   Serial.println("*********************************");
   Serial.println("*      Initializing EEPROM      *");
