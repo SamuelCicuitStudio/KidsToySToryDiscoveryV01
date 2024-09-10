@@ -49,7 +49,7 @@ void setup() {
 }
 
 void loop() {
-//delay(1); 
-// buttonManager.handleButtonPressPulledUp();
+delay(1); 
+buttonManager.handleButtonPressPulledUp();
 
 }
