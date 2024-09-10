@@ -17,7 +17,7 @@ MicrophoneManager Mic;
 EEPROMManager EePROMManager; 
 void setup() {
   Serial.begin(115200);// Initialize serial communication
-  Serial.println("\n\n");
+ /* Serial.println("\n\n");
   Serial.println("*********************************");
   Serial.println("*      Initializing EEPROM      *");
   Serial.println("*********************************");
@@ -40,7 +40,7 @@ void setup() {
   Serial.println("*       Initializing Mic        *");
   Serial.println("*********************************");
   _MicInit;
-  Mic.init();
+  Mic.init();*/
  
   wifiManager.begin();// Initialize WiFiManager
   Serial.println("*********************************");
@@ -50,7 +50,7 @@ void setup() {
 
 void loop() {
 delay(10);
-  while(EePROMManager.readBool(ADDR_CONFIG_FLAG)){
+  
   buttonManager.handleButtonPressPulledUp();
-  }
+
 }
