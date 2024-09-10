@@ -1,0 +1,97 @@
+#ifndef WIFICREDENTIALHTML_H
+#define WIFICREDENTIALHTML_H
+#include <Arduino.h>
+
+const char WiFiCredentialHTML[] PROGMEM = R"rawliteral(
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wireless Configuration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .container {
+            max-width: 500px;
+            width: 100%;
+            padding: 20px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="password"], input[type="submit"] {
+            width: calc(100% - 22px);
+            padding: 8px;
+            margin: 5px 0 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        .button-container {
+            text-align: center;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Wireless Configuration</h1>
+        
+        <form action="/saveCredentials" method="POST">
+            <label for="ssid">WiFi SSID:</label>
+            <input type="text" id="ssid" name="ssid" placeholder="{WIFI_SSID}">
+            
+            <label for="password">WiFi Password:</label>
+            <input type="password" id="password" name="password" placeholder="{WIFI_PASSWORD}">
+            
+            <input type="submit" value="Save WiFi Credentials">
+        </form>
+
+        <form action="/saveConfig" method="POST">
+            <label for="hotspotSSID">Hotspot SSID:</label>
+            <input type="text" id="hotspotSSID" name="hotspotSSID" placeholder="{HOTSPOT_SSID}">
+            
+            <label for="hotspotPassword">Hotspot Password:</label>
+            <input type="password" id="hotspotPassword" name="hotspotPassword" placeholder="{HOTSPOT_PASSWORD}">
+            
+            <label>
+                <input type="checkbox" id="mode" name="mode" {MODE_CHECKED}>
+                Enable Hotspot Mode
+            </label>
+
+            <input type="submit" value="Save Config">
+        </form>
+    </div>
+</body>
+</html>
+)rawliteral";
+
+#endif // WIFICREDENTIALHTML_H
