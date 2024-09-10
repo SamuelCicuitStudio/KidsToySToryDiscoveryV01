@@ -17,18 +17,18 @@ MicrophoneManager Mic;
 EEPROMManager EePROMManager; 
 void setup() {
   Serial.begin(115200);// Initialize serial communication
- Serial.println("\n\n");
+  Serial.println("\n\n");
   Serial.println("*********************************");
   Serial.println("*      Initializing EEPROM      *");
   Serial.println("*********************************");
   _EepromInit;
-  /*Serial.println("*********************************");
+  Serial.println("*********************************");
   Serial.println("*       Initializing SD card    *");
   Serial.println("*********************************");
-  _SdCardInit;
+ /* _SdCardInit;
   Serial.println("*********************************");
   Serial.println("*      Initializing Button      *");
-  Serial.println("*********************************");
+  Serial.println("*********************************");*/
   _BtInit;
   peripherals.initButtons();
   Serial.println("*********************************");
@@ -40,7 +40,7 @@ void setup() {
   Serial.println("*       Initializing Mic        *");
   Serial.println("*********************************");
   _MicInit;
-  Mic.init();*/
+  Mic.init();
  
   wifiManager.begin();// Initialize WiFiManager
   Serial.println("*********************************");
